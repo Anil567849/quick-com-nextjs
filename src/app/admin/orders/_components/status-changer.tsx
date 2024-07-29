@@ -22,7 +22,7 @@ const StatusChanger = ({ orderId, currentStatus }: { orderId: number; currentSta
             return changeOrderStatus(data);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['orders'] }); // this queryKey is from page.tsx
+            queryClient.invalidateQueries({ queryKey: ['orders'] }); // this queryKey is from page.tsx | When order-status change then we need to refresh orders again so our data is update to date on dashboard
             toast({ title: 'Order status updated successfully' });
         },
         // todo:
