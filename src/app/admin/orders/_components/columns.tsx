@@ -37,14 +37,14 @@ export const columns: ColumnDef<Order>[] = [
     {
         id: 'status',
         header: 'Status',
-        cell: ({ row }) => {
+        cell: ({ row }) => { // if we want to manipulate this cell
             return <StatusBadge status={row.original.status} />;
         },
     },
     {
         id: 'status',
         header: 'Action',
-        cell: ({ row }) => {
+        cell: ({ row }) => { // if we want to manipulate this cell
             return <StatusChanger orderId={row.original.id} currentStatus={row.original.status} />;
         },
     },

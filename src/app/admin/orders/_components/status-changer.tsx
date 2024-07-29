@@ -15,13 +15,14 @@ const StatusChanger = ({ orderId, currentStatus }: { orderId: number; currentSta
     const queryClient = useQueryClient();
     const { toast } = useToast();
 
+    // When select any list-item this mutation function will run 
     const { mutate } = useMutation({
         mutationKey: ['order-status'],
         mutationFn: (data: OrderStatusData) => {
             return changeOrderStatus(data);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['orders'] });
+            queryClient.invalidateQueries({ queryKey: ['orders'] }); // this queryKey is from page.tsx
             toast({ title: 'Order status updated successfully' });
         },
         // todo:
