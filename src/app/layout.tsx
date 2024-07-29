@@ -3,6 +3,9 @@ import { Inter as FontSans } from "next/font/google"
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { QueryProvider } from "./providers/query-provider";
+import AuthProvider from "./providers/auth-provider";
+import { getServerSession } from 'next-auth';
+import { authOptions } from "@/lib/auth/authOptions";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -15,20 +18,23 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const session = await getServerSession(authOptions); // get session data
+
   return (
     <html lang="en">
       <body className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}>
-          <QueryProvider >
-          {children}
-          </QueryProvider>
+            <QueryProvider>
+                <AuthProvider session={session}>{children}</AuthProvider>
+            </QueryProvider>
           </body>
     </html>
   );

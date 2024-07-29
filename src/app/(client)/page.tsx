@@ -1,3 +1,5 @@
+// (client) - enclose it with brackets, it will not count as route.
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button"
 
