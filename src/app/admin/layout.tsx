@@ -25,7 +25,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Sidebar from './_components/sidebar';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth/authOptions';
-// import Signout from './_components/signout';
+import Signout from './_components/signout';
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
     const session = await getServerSession(authOptions);
@@ -103,11 +103,12 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
                             <DropdownMenuItem>Settings</DropdownMenuItem>
                             <DropdownMenuItem>Support</DropdownMenuItem>
                             <DropdownMenuSeparator />
-                            {/* {session && (
+                            {session && (
                                 <DropdownMenuItem>
+                                    {/* we have built client Signout compoent to use signout() which provided by next-auth */}
                                     <Signout>Logout</Signout>
                                 </DropdownMenuItem>
-                            )} */}
+                            )}
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </header>
