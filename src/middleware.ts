@@ -8,15 +8,17 @@ export default withAuth({
             console.log('token', token);
 
             if (req.nextUrl.pathname.startsWith('/admin')) {
-                return token?.role === 'admin';
+                return token?.role === 'admin'; // true = auth || false = not auth
             } else if (req.nextUrl.pathname.startsWith('/account')) {
-                return token?.role === 'customer';
+                return token?.role === 'customer'; // true = auth || false = not auth
             } else {
                 return false;
             }
         },
     },
-}); // if empty {} means whole application is protected
+}); 
+
+// export default withAuth({}); // if empty {} means whole application is protected
 
 export const config = {
     matcher: ['/admin(/.*)?', '/account(/.*)?'], // /admin is protected and ? will handle admin/*
